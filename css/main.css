@@ -10,6 +10,14 @@ nav {
 	width: 200px;
 }
 
+.hidden {
+	display: none;
+}
+
+.visible {
+	display: block;
+}
+
 main {
 	display: inline-block;
 	background-color: #b3c1d1;
@@ -17,12 +25,12 @@ main {
 	height: 500px;
 }
 
-#menu {
+#menu-button {
 	width: 60px;
 	height: 40px;
 }
 
-.menu-button {
+.list-button {
 	width: 100px;
 }
 
