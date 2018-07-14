@@ -1,39 +1,46 @@
-
+* {
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+} 
 
 header {
-	background-color: yellow;
+  background-color: yellow;
 }
 
 nav {
-	display: inline-block;
-	background-color: gray;
-	width: 200px;
+  display: inline-block;
+  position: absolute;
+  background-color: gray;
+  width: 200px;
 }
 
 .hidden {
-	display: none;
+  display: none;
 }
 
 .visible {
-	display: block;
+  display: block;
 }
 
 main {
-	display: inline-block;
-	background-color: #b3c1d1;
-	width: 84%;
-	height: 500px;
+  display: inline-block;
+  background-color: #B3C1D1;
+  width: 84%;
+  height: 500px;
+  position: absolute;
+  left: 208px;
 }
 
 #menu-button {
-	width: 60px;
-	height: 40px;
+  width: 60px;
+  height: 40px;
 }
 
 .list-button {
-	width: 100px;
+  width: 100px;
 }
 
 hr {
-	width: 15px;
+  width: 15px;
 }
