@@ -58,12 +58,14 @@ function showOffice(evt) {
       var studentsTotalContainer = document.createElement('section');
       var studentsTotal = document.createElement('div');
       var officeStudents = data[office][i]['students'].length;
-      studentsTotal.innerHTML = i;
-      studentsTotal.innerHTML += '<p>'+ officeStudents +'</p>';
+      // studentsTotal.innerHTML = i;
+      studentsTotal.innerHTML = i +'<p>'+ officeStudents +'</p>';
       studentsTotalContainer.appendChild(studentsTotal);
       mainContent.appendChild(studentsTotalContainer);
   }
 }
+
+
 
 
 // Puedes hacer uso de la base de datos a través de la variable `data`
