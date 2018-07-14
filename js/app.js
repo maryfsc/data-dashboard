@@ -55,10 +55,12 @@ function showOffice(evt) {
 // sede e geração, inserindo no HTML por fim
   for (var i in data[office]) {
     for (var j in data[office][i]['students'])
-      var studentsTotalContainer = document.createElement('div');
+      var studentsTotalContainer = document.createElement('section');
+      var studentsTotal = document.createElement('div');
       var officeStudents = data[office][i]['students'].length;
-      studentsTotalContainer.innerHTML = i;
-      studentsTotalContainer.innerHTML += '<p>'+ officeStudents +'</p>';
+      studentsTotal.innerHTML = i;
+      studentsTotal.innerHTML += '<p>'+ officeStudents +'</p>';
+      studentsTotalContainer.appendChild(studentsTotal);
       mainContent.appendChild(studentsTotalContainer);
   }
 }
