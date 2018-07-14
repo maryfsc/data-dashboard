@@ -4,15 +4,26 @@
   box-sizing: border-box;
 }
 
+body {
+  margin: 0 auto;
+}
+
 header {
   background-color: yellow;
+  position: absolute;
+  top: 0;
+  right: 0;
+  left: 0;
+  z-index: 1000;
+  text-align: center;
 }
 
 nav {
   display: inline-block;
   position: absolute;
+  top: 81px;
   background-color: gray;
-  width: 200px;
+  width: 15%;
 }
 
 .hidden {
@@ -26,15 +37,20 @@ nav {
 main {
   display: inline-block;
   background-color: #B3C1D1;
-  width: 84%;
+  width: 85%;
   height: 500px;
   position: absolute;
-  left: 208px;
+  left: 203px;
+  top: 81px;
 }
 
 #menu-button {
   width: 60px;
   height: 40px;
+}
+
+#menu-list {
+  list-style: none;
 }
 
 .list-button {
