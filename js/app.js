@@ -1,4 +1,4 @@
-var mainContent = document.getElementById('main-content'); // ainda não utilizada
+var mainContent = document.getElementById('main-content');
 
 // pegando o elemento HTML do botão de menu e acrescentando o evento de click
 var menuButton = document.getElementById('menu-button');
@@ -12,32 +12,56 @@ function showMenu() {
   // percorre o array listButton removendo e acrescentando classes
   // pré-definidas no CSS
   for (i = 0; i < listButton.length; i++) {
-   if (listButton[i].classList.contains('hidden')){
-     listButton[i].classList.remove('hidden');
-     listButton[i].classList.add('show');
-   } else {
-     listButton[i].classList.remove('show');
-     listButton[i].classList.add('hidden');
-   }
+    if (listButton[i].classList.contains('hidden')){
+      listButton[i].classList.remove('hidden');
+      listButton[i].classList.add('show');
+    } else {
+      listButton[i].classList.remove('show');
+      listButton[i].classList.add('hidden');
+    }
   }
-
-
 }
-var studentsList = document.getElementById('drop-menu');
-dropMenu.addEventListener('change', carregaProgramadoras);
 
-function carregaProgramadoras(){
-	var sede = dropMenu.value;
-	var listaProgramadoras = document.getElementById('exibe-programadoras');
-	listaProgramadoras.innerHTML = '';
-	for (turma in data[sede]) {
-		for (i in data[sede][turma]['students']) {
-			var img = document.createElement('img');
-			img.src = data[sede][turma]['students'][i]['photo'];
-			listaProgramadoras.appendChild(img);
-		}
-	}
-};
+// pegando os botões individualmente e acrescentando um parâmetro 'param' como no JSON
+// para a função showOffice identificar qual a sede em questão
+
+var aqp = document.getElementById('aqp');
+aqp.param = 'AQP';
+var cdmx = document.getElementById('cdmx');
+cdmx.param = 'CDMX';
+var lim = document.getElementById('lim');
+lim.param = 'LIM';
+var scl = document.getElementById('scl');
+scl.param = 'SCL';
+
+// pegando os botões via classe 'office'
+var offices = document.getElementsByClassName('office');
+
+// acrescentando o event listener de click em cada um dos botões
+for (i = 0; i < offices.length; i++) {
+  offices[i].addEventListener('click', showOffice);
+}
+
+function showOffice(evt) {
+  // assegurando que o parâmetro evt terá o mesmo parâmetro
+  // da sede definido anteriormente
+ var office = evt.target.param;
+
+// apagando o conteúdo anterior do mainContent para receber o conteúdo seguinte
+ while (mainContent.hasChildNodes()) {
+    mainContent.removeChild(mainContent.firstChild);
+}
+// fazendo um for dentro de for para acessar o número de estudantes por
+// sede e geração, inserindo no HTML por fim
+  for (var i in data[office]) {
+    for (var j in data[office][i]['students'])
+      var studentsTotalContainer = document.createElement('div');
+      var officeStudents = data[office][i]['students'].length;
+      studentsTotalContainer.innerHTML = i;
+      studentsTotalContainer.innerHTML += '<p>'+ officeStudents +'</p>';
+      mainContent.appendChild(studentsTotalContainer);
+  }
+}
 
 
 // Puedes hacer uso de la base de datos a través de la variable `data`
