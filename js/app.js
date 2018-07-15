@@ -56,25 +56,26 @@ function showOffice(evt) {
 } 
 // fazendo um for dentro de for para acessar o número de estudantes por
 // sede e geração, inserindo no HTML por fim
-  for (var i in data[office]) {
-    for (var j in data[office][i]['students']) 
+  for (var series in data[office]) {
+    for (var student in data[office][series]['students']) 
       var studentsTotalContainer = document.createElement('div');
-      var officeStudents = data[office][i]['students'].length;
-      studentsTotalContainer.innerHTML = i;
+      var officeStudents = data[office][series]['students'].length;
+      studentsTotalContainer.innerHTML = series;
       studentsTotalContainer.innerHTML += '<p>'+ officeStudents +'</p>';
       mainContent.appendChild(studentsTotalContainer);
     
   }
   detractors();
+  aboveAverage();
 }
 
 function detractors() {
   var sum = 0;
   var totalStudents = 0;
-  for (var i in data[office]) {
-    for (var j in data[office][i]['students']) {
+  for (var series in data[office]) {
+    for (var student in data[office][series]['students']) {
       totalStudents += 1;
-      if (data[office][i]['students'][j]['active'] === false){
+      if (data[office][series]['students'][student]['active'] === false){
         sum += 1;
       }
     }
@@ -85,6 +86,24 @@ function detractors() {
   totalContainer.innerHTML = total;
   mainContent.appendChild(totalContainer);
 }
+
+function aboveAverage() {
+  debugger
+  for (var series in data[office]) {
+    for (var student in data[office][series]['students']) {
+      for (var sprints in data[office][series]['students'][student]) {
+        for (var i in data[office][series]['students'][student]['sprints']){
+          for (var score in data[office][series]['students'][student]['sprints'][i]['score']){
+            var tech = data[office][series]['students'][student]['sprints'][i]['score'][0];
+            var hse = ['score'][1];
+            var total = tech + hse;
+            console.log(tech);
+          }
+        }
+      }
+    }
+  }
+} 
 
 
 
