@@ -42,10 +42,13 @@ for (i = 0; i < offices.length; i++) {
   offices[i].addEventListener('click', showOffice);
 }
 
+var office;
+
 function showOffice(evt) {
+
   // assegurando que o parâmetro evt terá o mesmo parâmetro
   // da sede definido anteriormente
- var office = evt.target.param;  
+ office = evt.target.param;  
 
 // apagando o conteúdo anterior do mainContent para receber o conteúdo seguinte
  while (mainContent.hasChildNodes()) {  
@@ -54,15 +57,33 @@ function showOffice(evt) {
 // fazendo um for dentro de for para acessar o número de estudantes por
 // sede e geração, inserindo no HTML por fim
   for (var i in data[office]) {
-    for (var j in data[office][i]['students'])
-      var studentsTotalContainer = document.createElement('section');
-      var studentsTotal = document.createElement('div');
+    for (var j in data[office][i]['students']) 
+      var studentsTotalContainer = document.createElement('div');
       var officeStudents = data[office][i]['students'].length;
-      // studentsTotal.innerHTML = i;
-      studentsTotal.innerHTML = i +'<p>'+ officeStudents +'</p>';
-      studentsTotalContainer.appendChild(studentsTotal);
+      studentsTotalContainer.innerHTML = i;
+      studentsTotalContainer.innerHTML += '<p>'+ officeStudents +'</p>';
       mainContent.appendChild(studentsTotalContainer);
+    
   }
+  detractors();
+}
+
+function detractors() {
+  var sum = 0;
+  var totalStudents = 0;
+  for (var i in data[office]) {
+    for (var j in data[office][i]['students']) {
+      totalStudents += 1;
+      if (data[office][i]['students'][j]['active'] === false){
+        sum += 1;
+      }
+    }
+  }
+  var total = parseInt(sum / totalStudents * 100) + '%';
+  
+  var totalContainer = document.createElement('div');
+  totalContainer.innerHTML = total;
+  mainContent.appendChild(totalContainer);
 }
 
 
