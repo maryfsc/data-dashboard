@@ -1,6 +1,6 @@
-var mainContent = document.getElementById('main-content'); 
+var mainContent = document.getElementById('main-content');
 
-// pegando o elemento HTML do botão de menu e acrescentando o evento de click 
+// pegando o elemento HTML do botão de menu e acrescentando o evento de click
 var menuButton = document.getElementById('menu-button');
 menuButton.addEventListener('click', showMenu);
 
@@ -19,7 +19,7 @@ function showMenu() {
       listButton[i].classList.remove('show');
       listButton[i].classList.add('hidden');
     }
-  }	
+  }
 }
 
 // pegando os botões individualmente e acrescentando um parâmetro 'param' como no JSON
@@ -45,12 +45,12 @@ for (i = 0; i < offices.length; i++) {
 function showOffice(evt) {
   // assegurando que o parâmetro evt terá o mesmo parâmetro
   // da sede definido anteriormente
- var office = evt.target.param;  
+ var office = evt.target.param;
 
 // apagando o conteúdo anterior do mainContent para receber o conteúdo seguinte
- while (mainContent.hasChildNodes()) {  
+ while (mainContent.hasChildNodes()) {
     mainContent.removeChild(mainContent.firstChild);
-} 
+}
 // fazendo um for dentro de for para acessar o número de estudantes por
 // sede e geração, inserindo no HTML por fim
   for (var i in data[office]) {
