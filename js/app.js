@@ -68,11 +68,7 @@ function showOffice(evt) {
   detractors();
   aboveAverage();
   netPromoterScores();
-<<<<<<< HEAD
   // techOnly();
-=======
-  techAboveAvarage();
->>>>>>> cb047336c175aa49188e6068baef726750f0b77d
 }
 
 function detractors() {
