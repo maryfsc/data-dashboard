@@ -61,7 +61,7 @@ function showOffice(evt) {
       var studentsTotalContainer = document.createElement('div');
       var officeStudents = data[office][series]['students'].length;
       studentsTotalContainer.innerHTML = series;
-      studentsTotalContainer.innerHTML += '<p>'+ officeStudents +'</p>';
+      studentsTotalContainer.innerHTML += '<p>Total de alunas: '+ officeStudents +'</p>';
       mainContent.appendChild(studentsTotalContainer);
 
   }
@@ -83,27 +83,38 @@ function detractors() {
   var total = parseInt(sum / totalStudents * 100) + '%';
 
   var totalContainer = document.createElement('div');
-  totalContainer.innerHTML = total;
+  totalContainer.innerHTML = '<p>Total de desistentes: ' + total + '</p>';
   mainContent.appendChild(totalContainer);
 }
 
 function aboveAverage() {
-  debugger
+  const TECHMAX = 1800;
+  const HSEMAX = 1200;
+  var totalAboveAverage = 0;
+
   for (var series in data[office]) {
     for (var student in data[office][series]['students']) {
-      for (var sprints in data[office][series]['students'][student]) {
-        for (var i in data[office][series]['students'][student]['sprints']){
-          for (var score in data[office][series]['students'][student]['sprints'][i]['score']){
-            var tech = data[office][series]['students'][student]['sprints'][i]['score'][0];
-            var hse = ['score'][1];
-            var total = tech + hse;
-            console.log(tech);
-          }
-        }
+      var tech = 0;
+      var hse = 0;
+      for (var i in data[office][series]['students'][student]['sprints']) {
+        var sprintQuantity = data[office][series]['students'][student]['sprints'].length;
+        tech += data[office][series]['students'][student]['sprints'][i]['score']['tech'];
+        hse += data[office][series]['students'][student]['sprints'][i]['score']['hse'];
+      }
+
+      var techTotal = tech / sprintQuantity;
+      var hseTotal = hse / sprintQuantity;
+
+      var percentTechPoints = parseInt((techTotal / TECHMAX) * 100);
+      var percentHsePoints = parseInt((hseTotal / HSEMAX) * 100);
+
+      if (percentTechPoints > 70 && percentHsePoints > 70) {
+        totalAboveAverage += 1;
       }
     }
   }
 }
+
 
 
 
