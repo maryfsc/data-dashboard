@@ -128,18 +128,21 @@ function aboveAverage() {
 }
 
 function netPromoterScores() {
-  debugger
   var promoters = 0;
   var detractors = 0;
+  var sprintQuantity = 0;
   for (var series in data[office]) {
     for (var i in data[office][series]['ratings']) {
+      sprintQuantity += 1;
       promoters += data[office][series]['ratings'][i]['nps']['promoters'];
       detractors += data[office][series]['ratings'][i]['nps']['detractors'];
     }
   }
-
-  console.log(promoters);
-  console.log(detractors);
+  var npsTotal = parseInt((promoters + detractors) / sprintQuantity);
+  
+  var npsContainer = document.createElement('div');
+  npsContainer.innerHTML = 'Média de NPS: ' + npsTotal + '%';
+  mainContent.appendChild(npsContainer);
 }
 
 
