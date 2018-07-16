@@ -68,6 +68,7 @@ function showOffice(evt) {
   detractors();
   aboveAverage();
   netPromoterScores();
+  techAboveAvarage();
 }
 
 function detractors() {
@@ -139,11 +140,13 @@ function netPromoterScores() {
     }
   }
   var npsTotal = parseInt((promoters + detractors) / sprintQuantity);
-  
+
   var npsContainer = document.createElement('div');
   npsContainer.innerHTML = 'Média de NPS: ' + npsTotal + '%';
   mainContent.appendChild(npsContainer);
 }
+
+
 
 // Puedes hacer uso de la base de datos a través de la variable `data`
 console.log(data);
