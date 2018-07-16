@@ -88,7 +88,6 @@ function detractors() {
 }
 
 function aboveAverage() {
-  debugger
   const TECHMAX = 1800;
   const HSEMAX = 1200;
   var totalAboveAverage = 0;
