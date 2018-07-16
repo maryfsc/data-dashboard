@@ -66,6 +66,7 @@ function showOffice(evt) {
 
   }
   detractors();
+  aboveAverage();
 }
 
 function detractors() {
@@ -84,6 +85,24 @@ function detractors() {
   var totalContainer = document.createElement('div');
   totalContainer.innerHTML = total;
   mainContent.appendChild(totalContainer);
+}
+
+function aboveAverage() {
+  debugger
+  for (var series in data[office]) {
+    for (var student in data[office][series]['students']) {
+      for (var sprints in data[office][series]['students'][student]) {
+        for (var i in data[office][series]['students'][student]['sprints']){
+          for (var score in data[office][series]['students'][student]['sprints'][i]['score']){
+            var tech = data[office][series]['students'][student]['sprints'][i]['score'][0];
+            var hse = ['score'][1];
+            var total = tech + hse;
+            console.log(tech);
+          }
+        }
+      }
+    }
+  }
 }
 
 

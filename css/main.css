@@ -35,7 +35,8 @@ nav {
 }
 
 main {
-  display: inline-block;
+  display: flex;
+  justify-content: space-around;
   background-color: #B3C1D1;
   width: 85%;
   height: 500px;
