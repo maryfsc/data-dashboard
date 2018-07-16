@@ -1,6 +1,6 @@
-var mainContent = document.getElementById('main-content'); 
+var mainContent = document.getElementById('main-content');
 
-// pegando o elemento HTML do botão de menu e acrescentando o evento de click 
+// pegando o elemento HTML do botão de menu e acrescentando o evento de click
 var menuButton = document.getElementById('menu-button');
 menuButton.addEventListener('click', showMenu);
 
@@ -19,7 +19,7 @@ function showMenu() {
       listButton[i].classList.remove('show');
       listButton[i].classList.add('hidden');
     }
-  }	
+  }
 }
 
 // pegando os botões individualmente e acrescentando um parâmetro 'param' como no JSON
@@ -48,22 +48,22 @@ function showOffice(evt) {
 
   // assegurando que o parâmetro evt terá o mesmo parâmetro
   // da sede definido anteriormente
- office = evt.target.param;  
+ office = evt.target.param;
 
 // apagando o conteúdo anterior do mainContent para receber o conteúdo seguinte
- while (mainContent.hasChildNodes()) {  
+ while (mainContent.hasChildNodes()) {
     mainContent.removeChild(mainContent.firstChild);
-} 
+}
 // fazendo um for dentro de for para acessar o número de estudantes por
 // sede e geração, inserindo no HTML por fim
   for (var series in data[office]) {
-    for (var student in data[office][series]['students']) 
+    for (var student in data[office][series]['students'])
       var studentsTotalContainer = document.createElement('div');
       var officeStudents = data[office][series]['students'].length;
       studentsTotalContainer.innerHTML = series;
       studentsTotalContainer.innerHTML += '<p>Total de alunas: '+ officeStudents +'</p>';
       mainContent.appendChild(studentsTotalContainer);
-    
+
   }
   detractors();
   aboveAverage();
@@ -81,7 +81,7 @@ function detractors() {
     }
   }
   var total = parseInt(sum / totalStudents * 100) + '%';
-  
+
   var totalContainer = document.createElement('div');
   totalContainer.innerHTML = '<p>Total de desistentes: ' + total + '</p>';
   mainContent.appendChild(totalContainer);
@@ -96,7 +96,7 @@ function aboveAverage() {
   for (var series in data[office]) {
     for (var student in data[office][series]['students']) {
       var tech = 0;
-      var hse = 0;      
+      var hse = 0;
       for (var i in data[office][series]['students'][student]['sprints']) {
         var sprintQuantity = data[office][series]['students'][student]['sprints'].length;
         tech += data[office][series]['students'][student]['sprints'][i]['score']['tech'];
@@ -111,18 +111,10 @@ function aboveAverage() {
 
       if (percentTechPoints > 70 && percentHsePoints > 70) {
         totalAboveAverage += 1;
-      }  
-    }        
+      }
+    }
   }
-  var quantityContainer = document.createElement('div');
-  quantityContainer.innerHTML = '<p>Quantidade de alunas acima da média: ' + totalAboveAverage + '</p>';
-  mainContent.appendChild(quantityContainer);
-
-  // var percentContainer = document.createElement('div');
-  // var percent.innerHTML = '<p>' + totalAboveAverage + '</p>';
-  // quantityContainer.appendChild(quantity);
-  // mainContent.appendChild(quantityContainer);
-} 
+}
 
 
 
