@@ -88,15 +88,16 @@ function detractors() {
 }
 
 function aboveAverage() {
-  debugger
   const TECHMAX = 1800;
   const HSEMAX = 1200;
   var totalAboveAverage = 0;
+  var totalStudents = 0;
 
   for (var series in data[office]) {
     for (var student in data[office][series]['students']) {
       var tech = 0;
       var hse = 0;
+      totalStudents += 1;
       for (var i in data[office][series]['students'][student]['sprints']) {
         var sprintQuantity = data[office][series]['students'][student]['sprints'].length;
         tech += data[office][series]['students'][student]['sprints'][i]['score']['tech'];
@@ -114,14 +115,16 @@ function aboveAverage() {
       }
     }
   }
+  var studentPercent = parseInt((totalAboveAverage / totalStudents) * 100);
+
+  var percentContainer = document.createElement('div');
+  percentContainer.innerHTML = '<p>Porcentagem de alunas acima da média: ' + studentPercent + '%</p>';
+  mainContent.appendChild(percentContainer);
+
   var quantityContainer = document.createElement('div');
   quantityContainer.innerHTML = '<p>Quantidade de alunas acima da média: ' + totalAboveAverage + '</p>';
   mainContent.appendChild(quantityContainer);
 
-  // var percentContainer = document.createElement('div');
-  // var percent.innerHTML = '<p>' + totalAboveAverage + '</p>';
-  // quantityContainer.appendChild(quantity);
-  // mainContent.appendChild(quantityContainer);
 }
 
 
