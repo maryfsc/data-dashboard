@@ -67,6 +67,7 @@ function showOffice(evt) {
   }
   detractors();
   aboveAverage();
+  netPromoterScores();
 }
 
 function detractors() {
@@ -124,11 +125,22 @@ function aboveAverage() {
   var quantityContainer = document.createElement('div');
   quantityContainer.innerHTML = '<p>Quantidade de alunas acima da média: ' + totalAboveAverage + '</p>';
   mainContent.appendChild(quantityContainer);
-
 }
 
+function netPromoterScores() {
+  debugger
+  var promoters = 0;
+  var detractors = 0;
+  for (var series in data[office]) {
+    for (var i in data[office][series]['ratings']) {
+      promoters += data[office][series]['ratings'][i]['nps']['promoters'];
+      detractors += data[office][series]['ratings'][i]['nps']['detractors'];
+    }
+  }
 
-
+  console.log(promoters);
+  console.log(detractors);
+}
 
 // Puedes hacer uso de la base de datos a través de la variable `data`
 console.log(data);
