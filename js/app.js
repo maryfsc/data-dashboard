@@ -113,6 +113,14 @@ function aboveAverage() {
       }
     }
   }
+  var quantityContainer = document.createElement('div');
+  quantityContainer.innerHTML = '<p>Quantidade de alunas acima da média: ' + totalAboveAverage + '</p>';
+  mainContent.appendChild(quantityContainer);
+
+  // var percentContainer = document.createElement('div');
+  // var percent.innerHTML = '<p>' + totalAboveAverage + '</p>';
+  // quantityContainer.appendChild(quantity);
+  // mainContent.appendChild(quantityContainer);
 }
 
 
