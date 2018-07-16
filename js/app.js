@@ -61,13 +61,14 @@ function showOffice(evt) {
       var studentsTotalContainer = document.createElement('div');
       var officeStudents = data[office][series]['students'].length;
       studentsTotalContainer.innerHTML = series;
-      studentsTotalContainer.innerHTML += '<p>Total de alunas: '+ officeStudents +'</p>';
+      studentsTotalContainer.innerHTML += '<p>Total de alunas da turma: '+ officeStudents +'</p>';
       mainContent.appendChild(studentsTotalContainer);
 
   }
   detractors();
   aboveAverage();
   netPromoterScores();
+  // techOnly();
 }
 
 function detractors() {
@@ -92,6 +93,8 @@ function aboveAverage() {
   const TECHMAX = 1800;
   const HSEMAX = 1200;
   var totalAboveAverage = 0;
+  var techAboveAverage = 0;
+  var hseAboveAverage = 0;
   var totalStudents = 0;
 
   for (var series in data[office]) {
@@ -99,6 +102,7 @@ function aboveAverage() {
       var tech = 0;
       var hse = 0;
       totalStudents += 1;
+
       for (var i in data[office][series]['students'][student]['sprints']) {
         var sprintQuantity = data[office][series]['students'][student]['sprints'].length;
         tech += data[office][series]['students'][student]['sprints'][i]['score']['tech'];
@@ -116,6 +120,7 @@ function aboveAverage() {
       }
     }
   }
+
   var studentPercent = parseInt((totalAboveAverage / totalStudents) * 100);
 
   var percentContainer = document.createElement('div');
@@ -125,7 +130,24 @@ function aboveAverage() {
   var quantityContainer = document.createElement('div');
   quantityContainer.innerHTML = '<p>Quantidade de alunas acima da média: ' + totalAboveAverage + '</p>';
   mainContent.appendChild(quantityContainer);
+
 }
+
+// function techOnly() {
+//   debugger
+//   const TECHMAX = 1800;
+//   const HSEMAX = 1200;
+//   var tech = [];
+
+//   for (var series in data[office]) {
+//     for (var student in data[office][series]['students']) {
+//       for (var i in data[office][series]['students'][student]['sprints']) {
+//         tech.push(data[office][series]['students'][student]['sprints'][i]['score']['tech']);
+//       }
+//     }
+//   }
+//   console.log(tech);
+// }
 
 function netPromoterScores() {
   var promoters = 0;
