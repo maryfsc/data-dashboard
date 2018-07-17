@@ -10,7 +10,7 @@ body {
 }
 
 header {
-  background-color: yellow;
+  background-color: #FFE521;
   position: absolute;
   top: 0;
   right: 0;
@@ -22,8 +22,7 @@ header {
 nav {
   display: inline-block;
   position: absolute;
-  top: 81px;
-  background-color: gray;
+  top: 84px;
   width: 15%;
 }
 
@@ -49,14 +48,30 @@ main {
 #menu-button {
   width: 60px;
   height: 40px;
+  border: none;
+  background-color: #FFE521;
 }
 
 #menu-list {
   list-style: none;
+  width: 100%;
+  left: -48px;
+  position: relative;
 }
 
 .list-button {
-  width: 100px;
+  border: none;
+  width: 204px;
+  padding: 5px;
+  margin: 7px;
+  font-size: 16px;
+  background-color: transparent;
+  margin-bottom: -6px;
+}
+
+.list-button:hover, .list-button:focus {
+  background-color: #FF009E;
+  color: #FFFFFF;
 }
 
 hr {

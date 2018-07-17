@@ -54,6 +54,7 @@ function showOffice(evt) {
  while (mainContent.hasChildNodes()) {
     mainContent.removeChild(mainContent.firstChild);
 }
+
 // fazendo um for dentro de for para acessar o número de estudantes por
 // sede e geração, inserindo no HTML por fim
   for (var series in data[office]) {
@@ -65,6 +66,26 @@ function showOffice(evt) {
       mainContent.appendChild(studentsTotalContainer);
 
   }
+  var officeName = document.createElement('h1');
+
+  // if (office = 'AQP') {
+  //   officeName.textContent = 'AREQUIPA';
+  //   mainContent.appendChild(officeName);
+  // } 
+
+  // if (officeName = 'CDMX') {
+  //   officeName.textContent = 'CIDADE DO MÉXICO';
+  //   mainContent.appendChild(officeName);
+  // } 
+
+  // if (officeName = 'LIM') {
+  //   officeName.textContent = 'LIMA';
+  //   mainContent.appendChild(officeName);
+  // } else {
+  //   officeName.textContent = 'SANTIAGO DO CHILE';
+  //   mainContent.appendChild(officeName);
+  // }
+
   detractors();
   aboveAverage();
   netPromoterScores();
