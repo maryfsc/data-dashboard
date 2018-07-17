@@ -66,25 +66,25 @@ function showOffice(evt) {
       mainContent.appendChild(studentsTotalContainer);
 
   }
-  var officeName = document.createElement('h1');
+  // var officeName = document.createElement('h1');
 
-  // if (office = 'AQP') {
-  //   officeName.textContent = 'AREQUIPA';
-  //   mainContent.appendChild(officeName);
-  // } 
+  // // if (office = 'AQP') {
+  // //   officeName.textContent = 'AREQUIPA';
+  // //   mainContent.appendChild(officeName);
+  // // } 
 
-  // if (officeName = 'CDMX') {
-  //   officeName.textContent = 'CIDADE DO MÉXICO';
-  //   mainContent.appendChild(officeName);
-  // } 
+  // // if (officeName = 'CDMX') {
+  // //   officeName.textContent = 'CIDADE DO MÉXICO';
+  // //   mainContent.appendChild(officeName);
+  // // } 
 
-  // if (officeName = 'LIM') {
-  //   officeName.textContent = 'LIMA';
-  //   mainContent.appendChild(officeName);
-  // } else {
-  //   officeName.textContent = 'SANTIAGO DO CHILE';
-  //   mainContent.appendChild(officeName);
-  // }
+  // // if (officeName = 'LIM') {
+  // //   officeName.textContent = 'LIMA';
+  // //   mainContent.appendChild(officeName);
+  // // } else {
+  // //   officeName.textContent = 'SANTIAGO DO CHILE';
+  // //   mainContent.appendChild(officeName);
+  // // }
 
   detractors();
   aboveAverage();
@@ -92,6 +92,7 @@ function showOffice(evt) {
   teacherAverage();
   jediAverage();
   studentsExpectations();
+  studentProfile();
 }
 
 function detractors() {
@@ -243,6 +244,18 @@ function studentsExpectations(){
     var studentsExpectationContainer = document.createElement('div');
     studentsExpectationContainer.innerHTML = 'Expectativa das Alunas: Para ' + meetsAndExceedsExpectation + '% cumpre ou supera as expectativas.';
     mainContent.appendChild(studentsExpectationContainer);
+}
+
+function studentProfile() {
+  var profileStudents = 0;
+
+  for (var series in data[office]) {
+    for (var student in data[office][series]['students']) {
+      var img = document.createElement('img');
+      img.src = data[office][series]['students'][student]['photo'];
+      mainContent.appendChild(img);
+    }
+  }
 }
 
 // Puedes hacer uso de la base de datos a través de la variable `data`
