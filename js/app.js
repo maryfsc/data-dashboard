@@ -54,6 +54,7 @@ function showOffice(evt) {
  while (mainContent.hasChildNodes()) {
     mainContent.removeChild(mainContent.firstChild);
 }
+
 // fazendo um for dentro de for para acessar o número de estudantes por
 // sede e geração, inserindo no HTML por fim
   for (var series in data[office]) {
@@ -65,7 +66,6 @@ function showOffice(evt) {
       mainContent.appendChild(studentsTotalContainer);
 
   }
-
   // var officeName = document.createElement('h1');
 
   // // if (office = 'AQP') {
@@ -89,7 +89,6 @@ function showOffice(evt) {
   detractors();
   aboveAverage();
   netPromoterScores();
-  // techOnly();
   teacherAverage();
   jediAverage();
   studentsExpectations();
@@ -192,8 +191,6 @@ function netPromoterScores() {
   mainContent.appendChild(npsContainer);
 }
 
-
-
 function teacherAverage(){
 
   var teacherPoints = 0;
@@ -204,7 +201,7 @@ function teacherAverage(){
        teacherPoints += data[office][series]['ratings'][i]['teacher'];
      }
    }
-   var mediaTeacherPoints = parseInt(teacherPoints / sprintQuantity);
+   var mediaTeacherPoints = (teacherPoints / sprintQuantity).toFixed(2);
 
    var teacherPointsContainer = document.createElement('div');
    teacherPointsContainer.innerHTML = 'Média Mentores: ' + mediaTeacherPoints;
@@ -221,14 +218,14 @@ function jediAverage(){
        jediPoints += data[office][series]['ratings'][i]['jedi'];
      }
    }
-   var mediaJediPoints = parseInt(jediPoints / sprintQuantity);
+   var mediaJediPoints = (jediPoints / sprintQuantity).toFixed(2);
 
    var jediPointsContainer = document.createElement('div');
    jediPointsContainer.innerHTML = 'Média Jedi: ' + mediaJediPoints;
    mainContent.appendChild(jediPointsContainer);
 }
 
-function studentesExpectations(){
+function studentsExpectations(){
   var cumpleExpectation = 0;
   var noCumpleExpectation = 0;
   var superaExpectation = 0;
@@ -245,7 +242,7 @@ function studentesExpectations(){
     var meetsAndExceedsExpectation = parseInt((cumpleExpectation + superaExpectation) / sprintQuantity);
 
     var studentsExpectationContainer = document.createElement('div');
-    studentsExpectationContainer.innerHTML = 'Expectativa das Alunas: ' + meetsAndExceedsExpectation + ' cumprem ou superam as expectativas';
+    studentsExpectationContainer.innerHTML = 'Expectativa das Alunas: Para ' + meetsAndExceedsExpectation + '% cumpre ou supera as expectativas.';
     mainContent.appendChild(studentsExpectationContainer);
 }
 

@@ -1,4 +1,4 @@
-data = {
+var data = {
   'AQP': {
     '2016-2': {
       'students': [
@@ -992,7 +992,7 @@ data = {
           'sprints': [
             {
               'number': 1,
-              'sco  re': {
+              'score': {
                 'tech': 994,
                 'hse': 994
               }
