@@ -63,7 +63,7 @@ function showOffice(evt) {
       var officeStudents = data[office][series]['students'].length;
       studentsTotalContainer.classList = 'div-content';
       studentsTotalContainer.innerHTML = '<h2>' + series + '</h2>';
-      studentsTotalContainer.innerHTML += '<p>'+ officeStudents +'</p><p>Alunas</p>';
+      studentsTotalContainer.innerHTML += '<p class="student-number">'+ officeStudents +'</p><p>Alunas</p>';
       mainContent.appendChild(studentsTotalContainer);
 
   }
