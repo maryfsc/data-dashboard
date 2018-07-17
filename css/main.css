@@ -46,10 +46,11 @@ main {
 }
 
 #menu-button {
-  width: 60px;
+  width: 203px;
   height: 40px;
   border: none;
   background-color: #FFE521;
+  font-weight: 600;
 }
 
 #menu-list {
@@ -61,7 +62,7 @@ main {
 
 .list-button {
   border: none;
-  width: 204px;
+  width: 209px;
   padding: 5px;
   margin: 7px;
   font-size: 16px;

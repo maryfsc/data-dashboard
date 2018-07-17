@@ -89,7 +89,9 @@ function showOffice(evt) {
   detractors();
   aboveAverage();
   netPromoterScores();
-  // techOnly();
+  teacherAverage();
+  jediAverage();
+  studentsExpectations();
 }
 
 function detractors() {
@@ -188,7 +190,60 @@ function netPromoterScores() {
   mainContent.appendChild(npsContainer);
 }
 
+function teacherAverage(){
 
+  var teacherPoints = 0;
+  var sprintQuantity = 0;
+   for (var series in data[office]){
+     for (var i in data[office][series]['ratings']){
+       sprintQuantity += 1;
+       teacherPoints += data[office][series]['ratings'][i]['teacher'];
+     }
+   }
+   var mediaTeacherPoints = (teacherPoints / sprintQuantity).toFixed(2);
+
+   var teacherPointsContainer = document.createElement('div');
+   teacherPointsContainer.innerHTML = 'Média Mentores: ' + mediaTeacherPoints;
+   mainContent.appendChild(teacherPointsContainer);
+}
+
+function jediAverage(){
+
+  var jediPoints = 0;
+  var sprintQuantity = 0;
+   for (var series in data[office]){
+     for (var i in data[office][series]['ratings']){
+       sprintQuantity += 1;
+       jediPoints += data[office][series]['ratings'][i]['jedi'];
+     }
+   }
+   var mediaJediPoints = (jediPoints / sprintQuantity).toFixed(2);
+
+   var jediPointsContainer = document.createElement('div');
+   jediPointsContainer.innerHTML = 'Média Jedi: ' + mediaJediPoints;
+   mainContent.appendChild(jediPointsContainer);
+}
+
+function studentsExpectations(){
+  var cumpleExpectation = 0;
+  var noCumpleExpectation = 0;
+  var superaExpectation = 0;
+  var sprintQuantity = 0;
+
+    for (var series in data[office]){
+      for (var i in data[office][series]['ratings']){
+        sprintQuantity += 1;
+        cumpleExpectation += data[office][series]['ratings'][i]['student']['cumple'];
+        noCumpleExpectation += data[office][series]['ratings'][i]['student']['no-cumple'];
+        superaExpectation += data[office][series]['ratings'][i]['student']['supera'];
+      }
+    }
+    var meetsAndExceedsExpectation = parseInt((cumpleExpectation + superaExpectation) / sprintQuantity);
+
+    var studentsExpectationContainer = document.createElement('div');
+    studentsExpectationContainer.innerHTML = 'Expectativa das Alunas: Para ' + meetsAndExceedsExpectation + '% cumpre ou supera as expectativas.';
+    mainContent.appendChild(studentsExpectationContainer);
+}
 
 // Puedes hacer uso de la base de datos a través de la variable `data`
 console.log(data);
