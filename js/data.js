@@ -1,4 +1,4 @@
-var data = {
+data = {
   'AQP': {
     '2016-2': {
       'students': [

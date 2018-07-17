@@ -54,7 +54,6 @@ function showOffice(evt) {
  while (mainContent.hasChildNodes()) {
     mainContent.removeChild(mainContent.firstChild);
 }
-
 // fazendo um for dentro de for para acessar o número de estudantes por
 // sede e geração, inserindo no HTML por fim
   for (var series in data[office]) {
@@ -66,32 +65,13 @@ function showOffice(evt) {
       mainContent.appendChild(studentsTotalContainer);
 
   }
-  var officeName = document.createElement('h1');
-
-  // if (office = 'AQP') {
-  //   officeName.textContent = 'AREQUIPA';
-  //   mainContent.appendChild(officeName);
-  // } 
-
-  // if (officeName = 'CDMX') {
-  //   officeName.textContent = 'CIDADE DO MÉXICO';
-  //   mainContent.appendChild(officeName);
-  // } 
-
-  // if (officeName = 'LIM') {
-  //   officeName.textContent = 'LIMA';
-  //   mainContent.appendChild(officeName);
-  // } else {
-  //   officeName.textContent = 'SANTIAGO DO CHILE';
-  //   mainContent.appendChild(officeName);
-  // }
-
   detractors();
   aboveAverage();
   netPromoterScores();
+  // techOnly();
   teacherAverage();
   jediAverage();
-  studentsExpectations();
+  studentesExpectations();
 }
 
 function detractors() {
@@ -156,22 +136,21 @@ function aboveAverage() {
 
 }
 
-function techOnly() {
-  debugger
-  const TECHMAX = 1800;
-  const HSEMAX = 1200;
-  var techTotal = [];
+// function techOnly() {
+//   debugger
+//   const TECHMAX = 1800;
+//   const HSEMAX = 1200;
+//   var tech = [];
 
-  for (var series in data[office]) {
-    for (var student in data[office][series]['students']) {
-      for (var i in data[office][series]['students'][student]['sprints']) {
-        var tech = [];
-        tech.push(data[office][series]['students'][student]['sprints'][i]['score']['tech']);
-      }
-    }
-  }
-  console.log(tech);
-}
+//   for (var series in data[office]) {
+//     for (var student in data[office][series]['students']) {
+//       for (var i in data[office][series]['students'][student]['sprints']) {
+//         tech.push(data[office][series]['students'][student]['sprints'][i]['score']['tech']);
+//       }
+//     }
+//   }
+//   console.log(tech);
+// }
 
 function netPromoterScores() {
   var promoters = 0;
@@ -191,6 +170,8 @@ function netPromoterScores() {
   mainContent.appendChild(npsContainer);
 }
 
+
+
 function teacherAverage(){
 
   var teacherPoints = 0;
@@ -201,7 +182,7 @@ function teacherAverage(){
        teacherPoints += data[office][series]['ratings'][i]['teacher'];
      }
    }
-   var mediaTeacherPoints = (teacherPoints / sprintQuantity).toFixed(2);
+   var mediaTeacherPoints = parseInt(teacherPoints / sprintQuantity);
 
    var teacherPointsContainer = document.createElement('div');
    teacherPointsContainer.innerHTML = 'Média Mentores: ' + mediaTeacherPoints;
@@ -218,14 +199,14 @@ function jediAverage(){
        jediPoints += data[office][series]['ratings'][i]['jedi'];
      }
    }
-   var mediaJediPoints = (jediPoints / sprintQuantity).toFixed(2);
+   var mediaJediPoints = parseInt(jediPoints / sprintQuantity);
 
    var jediPointsContainer = document.createElement('div');
    jediPointsContainer.innerHTML = 'Média Jedi: ' + mediaJediPoints;
    mainContent.appendChild(jediPointsContainer);
 }
 
-function studentsExpectations(){
+function studentesExpectations(){
   var cumpleExpectation = 0;
   var noCumpleExpectation = 0;
   var superaExpectation = 0;
@@ -242,19 +223,9 @@ function studentsExpectations(){
     var meetsAndExceedsExpectation = parseInt((cumpleExpectation + superaExpectation) / sprintQuantity);
 
     var studentsExpectationContainer = document.createElement('div');
-    studentsExpectationContainer.innerHTML = 'Expectativa das Alunas: Para ' + meetsAndExceedsExpectation + '% cumpre ou supera as expectativas.';
+    studentsExpectationContainer.innerHTML = 'Expectativa das Alunas: ' + meetsAndExceedsExpectation + ' cumprem ou superam as expectativas';
     mainContent.appendChild(studentsExpectationContainer);
 }
 
-function profileStudents(){
-  var nameStudent = 0;
-  var active = 0;
-  var techAverage = 0;
-  var hseAverage = 0;
-    // for (var series in data[office]){
-    //
-    // }
-
-}
 // Puedes hacer uso de la base de datos a través de la variable `data`
 console.log(data);
