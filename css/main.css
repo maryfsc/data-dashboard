@@ -51,13 +51,15 @@ main {
   border: none;
   background-color: #FFE521;
   font-weight: 600;
+  font-size: 21px;
 }
 
 #menu-list {
   list-style: none;
   width: 100%;
-  left: -48px;
   position: relative;
+  top: -23px;
+  left: -48px;
 }
 
 .list-button {
