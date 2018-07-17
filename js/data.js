@@ -992,7 +992,7 @@ var data = {
           'sprints': [
             {
               'number': 1,
-              'score': {
+              'sco  re': {
                 'tech': 994,
                 'hse': 994
               }

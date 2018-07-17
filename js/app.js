@@ -71,7 +71,7 @@ function showOffice(evt) {
   // techOnly();
   teacherAverage();
   jediAverage();
-  studentesExpectations();
+  studentsExpectations();
 }
 
 function detractors() {
@@ -136,21 +136,22 @@ function aboveAverage() {
 
 }
 
-// function techOnly() {
-//   debugger
-//   const TECHMAX = 1800;
-//   const HSEMAX = 1200;
-//   var tech = [];
+function techOnly() {
+  debugger
+  const TECHMAX = 1800;
+  const HSEMAX = 1200;
+  var techTotal = [];
 
-//   for (var series in data[office]) {
-//     for (var student in data[office][series]['students']) {
-//       for (var i in data[office][series]['students'][student]['sprints']) {
-//         tech.push(data[office][series]['students'][student]['sprints'][i]['score']['tech']);
-//       }
-//     }
-//   }
-//   console.log(tech);
-// }
+  for (var series in data[office]) {
+    for (var student in data[office][series]['students']) {
+      for (var i in data[office][series]['students'][student]['sprints']) {
+        var tech = [];
+        tech.push(data[office][series]['students'][student]['sprints'][i]['score']['tech']);
+      }
+    }
+  }
+  console.log(tech);
+}
 
 function netPromoterScores() {
   var promoters = 0;
@@ -206,7 +207,7 @@ function jediAverage(){
    mainContent.appendChild(jediPointsContainer);
 }
 
-function studentesExpectations(){
+function studentsExpectations(){
   var cumpleExpectation = 0;
   var noCumpleExpectation = 0;
   var superaExpectation = 0;
@@ -227,5 +228,15 @@ function studentesExpectations(){
     mainContent.appendChild(studentsExpectationContainer);
 }
 
+function profileStudents(){
+  var nameStudent = 0;
+  var active = 0;
+  var techAverage = 0;
+  var hseAverage = 0;
+    // for (var series in data[office]){
+    //
+    // }
+
+}
 // Puedes hacer uso de la base de datos a través de la variable `data`
 console.log(data);
