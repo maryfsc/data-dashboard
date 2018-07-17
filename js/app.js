@@ -71,6 +71,7 @@ function showOffice(evt) {
   // techOnly();
   teacherAverage();
   jediAverage();
+  studentesExpectations();
 }
 
 function detractors() {
@@ -205,6 +206,26 @@ function jediAverage(){
    mainContent.appendChild(jediPointsContainer);
 }
 
+function studentesExpectations(){
+  var cumpleExpectation = 0;
+  var noCumpleExpectation = 0;
+  var superaExpectation = 0;
+  var sprintQuantity = 0;
+
+    for (var series in data[office]){
+      for (var i in data[office][series]['ratings']){
+        sprintQuantity += 1;
+        cumpleExpectation += data[office][series]['ratings'][i]['student']['cumple'];
+        noCumpleExpectation += data[office][series]['ratings'][i]['student']['no-cumple'];
+        superaExpectation += data[office][series]['ratings'][i]['student']['supera'];
+      }
+    }
+    var meetsAndExceedsExpectation = parseInt((cumpleExpectation + superaExpectation) / sprintQuantity);
+
+    var studentsExpectationContainer = document.createElement('div');
+    studentsExpectationContainer.innerHTML = 'Expectativa das Alunas: ' + meetsAndExceedsExpectation + ' cumprem ou superam as expectativas';
+    mainContent.appendChild(studentsExpectationContainer);
+}
 
 // Puedes hacer uso de la base de datos a través de la variable `data`
 console.log(data);
