@@ -182,7 +182,7 @@ function teacherAverage(){
        teacherPoints += data[office][series]['ratings'][i]['teacher'];
      }
    }
-   var mediaTeacherPoints = parseInt(teacherPoints / sprintQuantity);
+   var mediaTeacherPoints = (teacherPoints / sprintQuantity).toFixed(2);
 
    var teacherPointsContainer = document.createElement('div');
    teacherPointsContainer.innerHTML = 'Média Mentores: ' + mediaTeacherPoints;
@@ -199,7 +199,7 @@ function jediAverage(){
        jediPoints += data[office][series]['ratings'][i]['jedi'];
      }
    }
-   var mediaJediPoints = parseInt(jediPoints / sprintQuantity);
+   var mediaJediPoints = (jediPoints / sprintQuantity).toFixed(2);
 
    var jediPointsContainer = document.createElement('div');
    jediPointsContainer.innerHTML = 'Média Jedi: ' + mediaJediPoints;
