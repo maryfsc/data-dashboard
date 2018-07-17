@@ -61,30 +61,12 @@ function showOffice(evt) {
     for (var student in data[office][series]['students'])
       var studentsTotalContainer = document.createElement('div');
       var officeStudents = data[office][series]['students'].length;
-      studentsTotalContainer.innerHTML = series;
-      studentsTotalContainer.innerHTML += '<p>Total de alunas da turma: '+ officeStudents +'</p>';
+      studentsTotalContainer.classList = 'div-content';
+      studentsTotalContainer.innerHTML = '<h2>' + series + '</h2>';
+      studentsTotalContainer.innerHTML += '<p>'+ officeStudents +'</p><p>Alunas</p>';
       mainContent.appendChild(studentsTotalContainer);
 
   }
-  // var officeName = document.createElement('h1');
-
-  // // if (office = 'AQP') {
-  // //   officeName.textContent = 'AREQUIPA';
-  // //   mainContent.appendChild(officeName);
-  // // } 
-
-  // // if (officeName = 'CDMX') {
-  // //   officeName.textContent = 'CIDADE DO MÉXICO';
-  // //   mainContent.appendChild(officeName);
-  // // } 
-
-  // // if (officeName = 'LIM') {
-  // //   officeName.textContent = 'LIMA';
-  // //   mainContent.appendChild(officeName);
-  // // } else {
-  // //   officeName.textContent = 'SANTIAGO DO CHILE';
-  // //   mainContent.appendChild(officeName);
-  // // }
 
   detractors();
   aboveAverage();
@@ -184,7 +166,7 @@ function netPromoterScores() {
       detractors += data[office][series]['ratings'][i]['nps']['detractors'];
     }
   }
-  var npsTotal = parseInt((promoters + detractors) / sprintQuantity);
+  var npsTotal = parseInt((promoters - detractors) / sprintQuantity);
 
   var npsContainer = document.createElement('div');
   npsContainer.innerHTML = 'Média de NPS: ' + npsTotal + '%';
@@ -204,7 +186,7 @@ function teacherAverage(){
    var mediaTeacherPoints = (teacherPoints / sprintQuantity).toFixed(2);
 
    var teacherPointsContainer = document.createElement('div');
-   teacherPointsContainer.innerHTML = 'Média Mentores: ' + mediaTeacherPoints;
+   teacherPointsContainer.innerHTML = 'Nota média de mentores: ' + mediaTeacherPoints;
    mainContent.appendChild(teacherPointsContainer);
 }
 
@@ -221,7 +203,7 @@ function jediAverage(){
    var mediaJediPoints = (jediPoints / sprintQuantity).toFixed(2);
 
    var jediPointsContainer = document.createElement('div');
-   jediPointsContainer.innerHTML = 'Média Jedi: ' + mediaJediPoints;
+   jediPointsContainer.innerHTML = 'Nota média de Jedis: ' + mediaJediPoints;
    mainContent.appendChild(jediPointsContainer);
 }
 
@@ -246,17 +228,17 @@ function studentsExpectations(){
     mainContent.appendChild(studentsExpectationContainer);
 }
 
-function studentProfile() {
-  var profileStudents = 0;
+// function studentProfile() {
+//   var profileStudents = 0;
 
-  for (var series in data[office]) {
-    for (var student in data[office][series]['students']) {
-      var img = document.createElement('img');
-      img.src = data[office][series]['students'][student]['photo'];
-      mainContent.appendChild(img);
-    }
-  }
-}
+//   for (var series in data[office]) {
+//     for (var student in data[office][series]['students']) {
+//       var img = document.createElement('img');
+//       img.src = data[office][series]['students'][student]['photo'];
+//       mainContent.appendChild(img);
+//     }
+//   }
+// }
 
 // Puedes hacer uso de la base de datos a través de la variable `data`
 console.log(data);
