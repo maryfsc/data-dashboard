@@ -68,11 +68,9 @@ function showOffice(evt) {
   detractors();
   aboveAverage();
   netPromoterScores();
-<<<<<<< HEAD
   // techOnly();
-=======
-  techAboveAvarage();
->>>>>>> cb047336c175aa49188e6068baef726750f0b77d
+  teacherAverage();
+  jediAverage();
 }
 
 function detractors() {
@@ -171,6 +169,41 @@ function netPromoterScores() {
   mainContent.appendChild(npsContainer);
 }
 
+
+
+function teacherAverage(){
+
+  var teacherPoints = 0;
+  var sprintQuantity = 0;
+   for (var series in data[office]){
+     for (var i in data[office][series]['ratings']){
+       sprintQuantity += 1;
+       teacherPoints += data[office][series]['ratings'][i]['teacher'];
+     }
+   }
+   var mediaTeacherPoints = parseInt(teacherPoints / sprintQuantity);
+
+   var teacherPointsContainer = document.createElement('div');
+   teacherPointsContainer.innerHTML = 'Média Mentores: ' + mediaTeacherPoints;
+   mainContent.appendChild(teacherPointsContainer);
+}
+
+function jediAverage(){
+
+  var jediPoints = 0;
+  var sprintQuantity = 0;
+   for (var series in data[office]){
+     for (var i in data[office][series]['ratings']){
+       sprintQuantity += 1;
+       jediPoints += data[office][series]['ratings'][i]['jedi'];
+     }
+   }
+   var mediaJediPoints = parseInt(jediPoints / sprintQuantity);
+
+   var jediPointsContainer = document.createElement('div');
+   jediPointsContainer.innerHTML = 'Média Jedi: ' + mediaJediPoints;
+   mainContent.appendChild(jediPointsContainer);
+}
 
 
 // Puedes hacer uso de la base de datos a través de la variable `data`
