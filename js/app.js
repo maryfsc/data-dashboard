@@ -1,16 +1,11 @@
 var mainContent = document.getElementById('main-content');
 
-// pegando o elemento HTML do botão de menu e acrescentando o evento de click
 var menuButton = document.getElementById('menu-button');
 menuButton.addEventListener('click', showMenu);
 
 function showMenu() {
-
-  // retorna um array com todos os elementos HTML com classe 'list-button'
   var listButton = document.getElementsByClassName('list-button');
 
-  // percorre o array listButton removendo e acrescentando classes
-  // pré-definidas no CSS
   for (i = 0; i < listButton.length; i++) {
     if (listButton[i].classList.contains('hidden')){
       listButton[i].classList.remove('hidden');
@@ -18,12 +13,9 @@ function showMenu() {
     } else {
       listButton[i].classList.remove('show');
       listButton[i].classList.add('hidden');
-    }
-  }
-}
-
-// pegando os botões individualmente e acrescentando um parâmetro 'param' como no JSON
-// para a função showOffice identificar qual a sede em questão
+      }
+   }
+} 
 
 var aqp = document.getElementById('aqp');
 aqp.param = 'AQP';
@@ -34,10 +26,8 @@ lim.param = 'LIM';
 var scl = document.getElementById('scl');
 scl.param = 'SCL';
 
-// pegando os botões via classe 'office'
 var offices = document.getElementsByClassName('office');
 
-// acrescentando o event listener de click em cada um dos botões
 for (i = 0; i < offices.length; i++) {
   offices[i].addEventListener('click', showOffice);
 }
@@ -45,18 +35,12 @@ for (i = 0; i < offices.length; i++) {
 var office;
 
 function showOffice(evt) {
-
-  // assegurando que o parâmetro evt terá o mesmo parâmetro
-  // da sede definido anteriormente
  office = evt.target.param;
-
-// apagando o conteúdo anterior do mainContent para receber o conteúdo seguinte
- while (mainContent.hasChildNodes()) {
+  
+  while (mainContent.hasChildNodes()) {
     mainContent.removeChild(mainContent.firstChild);
-}
+  }
 
-// fazendo um for dentro de for para acessar o número de estudantes por
-// sede e geração, inserindo no HTML por fim
   for (var series in data[office]) {
     for (var student in data[office][series]['students'])
       var studentsTotalContainer = document.createElement('div');
@@ -65,7 +49,6 @@ function showOffice(evt) {
       studentsTotalContainer.innerHTML = '<h2>' + series + '</h2>';
       studentsTotalContainer.innerHTML += '<p class="student-number">'+ officeStudents +'</p><p>Alunas</p>';
       mainContent.appendChild(studentsTotalContainer);
-
   }
 
   detractors();
@@ -74,25 +57,76 @@ function showOffice(evt) {
   teacherAverage();
   jediAverage();
   studentsExpectations();
-  studentProfile();
 }
 
 function detractors() {
-  var sum = 0;
+  var active = 0;
+  var inactive = 0;
   var totalStudents = 0;
+
   for (var series in data[office]) {
     for (var student in data[office][series]['students']) {
       totalStudents += 1;
       if (data[office][series]['students'][student]['active'] === false){
-        sum += 1;
+        inactive += 1;
+      } else {
+        active += 1;
       }
     }
   }
-  var total = parseInt(sum / totalStudents * 100) + '%';
+
+  var totalInactive = parseInt(inactive / totalStudents * 100);
+  var totalActive = parseInt(active / totalStudents * 100);
+
+// Objeto com dados para o gráfico
+  var activeGraph = [
+    {name: 'ativas', y: totalActive},
+    {name: 'desistentes', y: totalInactive}
+  ]
+
+// Início do código do gráfico 
+  Highcharts.chart('detractors-graph-container', {
+    chart: {
+      plotBackgroundColor: null,
+      plotBorderWidth: null,
+      plotShadow: false,
+      type: 'pie'
+    },
+    title: {
+      text: 'Browser market shares in January, 2018'
+    },
+    tooltip: {
+      pointFormat: '{series.name}: <b>{point.percentage:.1f}%</b>'
+    },
+    plotOptions: {
+      pie: {
+        allowPointSelect: true,
+        cursor: 'pointer',
+        dataLabels: {
+        enabled: true,
+        format: '<b>{point.name}</b>: {point.percentage:.1f} %',
+        style: {
+          color: (Highcharts.theme && Highcharts.theme.contrastTextColor) || 'black'
+        }
+      }
+    }
+  },
+  series: [{
+    name: ' ',
+    colorByPoint: true,
+    data: activeGraph
+  }]
+});
 
   var totalContainer = document.createElement('div');
-  totalContainer.innerHTML = '<p>Total de desistentes: ' + total + '</p>';
+  var graphContainer = document.createElement('div');
+  graphContainer.id = 'detractors-graph-container';
+  totalContainer.classList = 'div-content';
+  totalContainer.innerHTML = '<h2 class="green">' + totalInactive + '</h2>';
+  totalContainer.innerHTML += '<p>Desistiram</p>';
   mainContent.appendChild(totalContainer);
+
+  console.log(activeGraph);
 }
 
 function aboveAverage() {
@@ -139,22 +173,6 @@ function aboveAverage() {
 
 }
 
-// function techOnly() {
-//   debugger
-//   const TECHMAX = 1800;
-//   const HSEMAX = 1200;
-//   var tech = [];
-
-//   for (var series in data[office]) {
-//     for (var student in data[office][series]['students']) {
-//       for (var i in data[office][series]['students'][student]['sprints']) {
-//         tech.push(data[office][series]['students'][student]['sprints'][i]['score']['tech']);
-//       }
-//     }
-//   }
-//   console.log(tech);
-// }
-
 function netPromoterScores() {
   var promoters = 0;
   var detractors = 0;
@@ -177,17 +195,19 @@ function teacherAverage(){
 
   var teacherPoints = 0;
   var sprintQuantity = 0;
-   for (var series in data[office]){
+
+  for (var series in data[office]){
      for (var i in data[office][series]['ratings']){
        sprintQuantity += 1;
        teacherPoints += data[office][series]['ratings'][i]['teacher'];
      }
-   }
-   var mediaTeacherPoints = (teacherPoints / sprintQuantity).toFixed(2);
+    }
 
-   var teacherPointsContainer = document.createElement('div');
-   teacherPointsContainer.innerHTML = 'Nota média de mentores: ' + mediaTeacherPoints;
-   mainContent.appendChild(teacherPointsContainer);
+  var mediaTeacherPoints = (teacherPoints / sprintQuantity).toFixed(2);
+
+  var teacherPointsContainer = document.createElement('div');
+  teacherPointsContainer.innerHTML = 'Nota média de mentores: ' + mediaTeacherPoints;
+  mainContent.appendChild(teacherPointsContainer);
 }
 
 function jediAverage(){
@@ -228,17 +248,4 @@ function studentsExpectations(){
     mainContent.appendChild(studentsExpectationContainer);
 }
 
-// function studentProfile() {
-//   var profileStudents = 0;
-
-//   for (var series in data[office]) {
-//     for (var student in data[office][series]['students']) {
-//       var img = document.createElement('img');
-//       img.src = data[office][series]['students'][student]['photo'];
-//       mainContent.appendChild(img);
-//     }
-//   }
-// }
-
-// Puedes hacer uso de la base de datos a través de la variable `data`
 console.log(data);

@@ -105,3 +105,15 @@ h2 {
   color: #FF009E;
   font-size: 30px;
 }
+
+.green {
+  color: #56F89A;
+  font-size: 34px;
+}
+
+#detractors-graph-container {
+  min-width: 310px; 
+  height: 400px; 
+  max-width: 600px; 
+  margin: 0 auto;
+}
