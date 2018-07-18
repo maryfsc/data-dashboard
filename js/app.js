@@ -47,7 +47,7 @@ function showOffice(evt) {
       var officeStudents = data[office][series]['students'].length;
       studentsTotalContainer.classList = 'div-content';
       studentsTotalContainer.innerHTML = '<h2>' + series + '</h2>';
-      studentsTotalContainer.innerHTML += '<p class="student-number">'+ officeStudents +'</p><p>Alunas</p>';
+      studentsTotalContainer.innerHTML += '<p class="pink">'+ officeStudents +'</p><p>Alunas</p>';
       mainContent.appendChild(studentsTotalContainer);
   }
 
@@ -75,58 +75,14 @@ function detractors() {
     }
   }
 
-  var totalInactive = parseInt(inactive / totalStudents * 100);
-  var totalActive = parseInt(active / totalStudents * 100);
-
-// Objeto com dados para o gráfico
-  var activeGraph = [
-    {name: 'ativas', y: totalActive},
-    {name: 'desistentes', y: totalInactive}
-  ]
-
-// Início do código do gráfico 
-  Highcharts.chart('detractors-graph-container', {
-    chart: {
-      plotBackgroundColor: null,
-      plotBorderWidth: null,
-      plotShadow: false,
-      type: 'pie'
-    },
-    title: {
-      text: 'Browser market shares in January, 2018'
-    },
-    tooltip: {
-      pointFormat: '{series.name}: <b>{point.percentage:.1f}%</b>'
-    },
-    plotOptions: {
-      pie: {
-        allowPointSelect: true,
-        cursor: 'pointer',
-        dataLabels: {
-        enabled: true,
-        format: '<b>{point.name}</b>: {point.percentage:.1f} %',
-        style: {
-          color: (Highcharts.theme && Highcharts.theme.contrastTextColor) || 'black'
-        }
-      }
-    }
-  },
-  series: [{
-    name: ' ',
-    colorByPoint: true,
-    data: activeGraph
-  }]
-});
+  var totalInactive = parseInt(inactive / totalStudents * 100) + '%';
+  var totalActive = parseInt(active / totalStudents * 100) + '%';
 
   var totalContainer = document.createElement('div');
-  var graphContainer = document.createElement('div');
-  graphContainer.id = 'detractors-graph-container';
   totalContainer.classList = 'div-content';
   totalContainer.innerHTML = '<h2 class="green">' + totalInactive + '</h2>';
   totalContainer.innerHTML += '<p>Desistiram</p>';
   mainContent.appendChild(totalContainer);
-
-  console.log(activeGraph);
 }
 
 function aboveAverage() {
@@ -164,13 +120,16 @@ function aboveAverage() {
   var studentPercent = parseInt((totalAboveAverage / totalStudents) * 100);
 
   var percentContainer = document.createElement('div');
-  percentContainer.innerHTML = '<p>Porcentagem de alunas acima da média: ' + studentPercent + '%</p>';
+  percentContainer.classList = 'div-content';
+  percentContainer.innerHTML = '<h2 class="green">' + studentPercent + '%</h2>';
+  percentContainer.innerHTML += '<p>De alunas acima da média</p>';
   mainContent.appendChild(percentContainer);
 
   var quantityContainer = document.createElement('div');
-  quantityContainer.innerHTML = '<p>Quantidade de alunas acima da média: ' + totalAboveAverage + '</p>';
+  quantityContainer.classList = 'div-content';
+  quantityContainer.innerHTML = '<h2 class="green">' + totalAboveAverage + '%</h2>';
+  quantityContainer.innerHTML += '<p>Alunas acima da média</p>';
   mainContent.appendChild(quantityContainer);
-
 }
 
 function netPromoterScores() {
@@ -184,10 +143,12 @@ function netPromoterScores() {
       detractors += data[office][series]['ratings'][i]['nps']['detractors'];
     }
   }
-  var npsTotal = parseInt((promoters - detractors) / sprintQuantity);
+  var npsTotal = parseInt((promoters - detractors) / sprintQuantity) + '%';
 
   var npsContainer = document.createElement('div');
-  npsContainer.innerHTML = 'Média de NPS: ' + npsTotal + '%';
+  npsContainer.classList = 'div-content';
+  npsContainer.innerHTML = '<h2 class="green">' + npsTotal + '</h2>';
+  npsContainer.innerHTML += '<p>NPS</p>';
   mainContent.appendChild(npsContainer);
 }
 
@@ -206,7 +167,9 @@ function teacherAverage(){
   var mediaTeacherPoints = (teacherPoints / sprintQuantity).toFixed(2);
 
   var teacherPointsContainer = document.createElement('div');
-  teacherPointsContainer.innerHTML = 'Nota média de mentores: ' + mediaTeacherPoints;
+  teacherPointsContainer.classList = 'div-content';
+  teacherPointsContainer.innerHTML = '<h2 class="pink">' + mediaTeacherPoints + '</p>';
+  teacherPointsContainer.innerHTML += '<p>Média de Teacher Points</p>';
   mainContent.appendChild(teacherPointsContainer);
 }
 
@@ -223,7 +186,9 @@ function jediAverage(){
    var mediaJediPoints = (jediPoints / sprintQuantity).toFixed(2);
 
    var jediPointsContainer = document.createElement('div');
-   jediPointsContainer.innerHTML = 'Nota média de Jedis: ' + mediaJediPoints;
+   jediPointsContainer.classList = 'div-content';
+   jediPointsContainer.innerHTML = '<h2 class="pink">' + mediaJediPoints + '</p>';
+   jediPointsContainer.innerHTML += '<p>Média de Jedi Points</p>';
    mainContent.appendChild(jediPointsContainer);
 }
 
@@ -241,10 +206,12 @@ function studentsExpectations(){
         superaExpectation += data[office][series]['ratings'][i]['student']['supera'];
       }
     }
-    var meetsAndExceedsExpectation = parseInt((cumpleExpectation + superaExpectation) / sprintQuantity);
+    var meetsAndExceedsExpectation = parseInt((cumpleExpectation + superaExpectation) / sprintQuantity) + '%';
 
     var studentsExpectationContainer = document.createElement('div');
-    studentsExpectationContainer.innerHTML = 'Expectativa das Alunas: Para ' + meetsAndExceedsExpectation + '% cumpre ou supera as expectativas.';
+    studentsExpectationContainer.classList = 'div-content';
+    studentsExpectationContainer.innerHTML = '<h2 class="green">' + meetsAndExceedsExpectation + '</h2>';
+    studentsExpectationContainer.innerHTML += '<p>De satisfeitas ou surpresas com a Laboratoria!</p>';
     mainContent.appendChild(studentsExpectationContainer);
 }
 
