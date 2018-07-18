@@ -117,17 +117,17 @@ function aboveAverage() {
     }
   }
 
-  var studentPercent = parseInt((totalAboveAverage / totalStudents) * 100);
+  var studentPercent = parseInt((totalAboveAverage / totalStudents) * 100) + '%';
 
   var percentContainer = document.createElement('div');
   percentContainer.classList = 'div-content';
-  percentContainer.innerHTML = '<h2 class="green">' + studentPercent + '%</h2>';
+  percentContainer.innerHTML = '<h2 class="green">' + studentPercent + '</h2>';
   percentContainer.innerHTML += '<p>De alunas acima da média</p>';
   mainContent.appendChild(percentContainer);
 
   var quantityContainer = document.createElement('div');
   quantityContainer.classList = 'div-content';
-  quantityContainer.innerHTML = '<h2 class="green">' + totalAboveAverage + '%</h2>';
+  quantityContainer.innerHTML = '<h2 class="pink">' + totalAboveAverage + '</h2>';
   quantityContainer.innerHTML += '<p>Alunas acima da média</p>';
   mainContent.appendChild(quantityContainer);
 }
