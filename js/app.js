@@ -50,13 +50,14 @@ function showOffice(evt) {
       studentsTotalContainer.innerHTML += '<p class="pink">'+ officeStudents +'</p><p>Alunas</p>';
       mainContent.appendChild(studentsTotalContainer);
   }
-
   detractors();
   aboveAverage();
   netPromoterScores();
   teacherAverage();
   jediAverage();
   studentsExpectations();
+  studentProfile();
+  studentPhoto();
 }
 
 function detractors() {
@@ -215,4 +216,29 @@ function studentsExpectations(){
     mainContent.appendChild(studentsExpectationContainer);
 }
 
+function studentPhoto() {
+
+  for (var series in data[office]) {
+    for (var student in data[office][series]['students']) {
+      var img = document.createElement('img');
+      img.src = data[office][series]['students'][student]['photo'];
+      mainContent.appendChild(img);
+    }
+  }
+}
+
+function studentProfile(){
+  var studentProfile = {};
+
+    for (var series in data[office]){
+      for (var student in data[office][series]['students']){
+        studentProfile ['name'] = data[office][series]['students'][student]['name'];
+        studentProfile ['active'] = data[office][series]['students'][student]['active'];
+      }
+    }
+
+console.log(studentProfile);
+}
+
+// Puedes hacer uso de la base de datos a través de la variable `data`
 console.log(data);
