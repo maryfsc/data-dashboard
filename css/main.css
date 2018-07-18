@@ -22,7 +22,7 @@ header {
 nav {
   display: inline-block;
   position: absolute;
-  top: 81px;
+  top: 128px;
   width: 15%;
 }
 
@@ -36,7 +36,7 @@ nav {
 
 main {
   display: flex;
-  justify-content: space-around;
+  justify-content: center;
   flex-wrap: wrap;
   width: 84%;
   height: 500px;
@@ -55,18 +55,32 @@ position: relative;
 left: -95px;
 }
 
-i {
+.icon-sun {
   font-size: 46px;
+}
+
+.icon-bars {
+  font-size: 20px;
+  position: relative;
+  top: 3px;
+  left: -13px;
+}
+
+.icon-user, .icon-frown-o, .icon-chart-bar, .icon-pencil-square-o, .icon-line-chart, .icon-coffee, .icon-rocket, .icon-smile-o {
+  color: black;
+  font-size: 30px;
 }
 
 #menu-button {
   font-weight: 600;
   width: 202px;
-  height: 40px;
+  height: 60px;
   border: none;
   background-color: #FFE521;
   font-weight: 600;
   font-size: 21px;
+  border: 1px solid black;
+  cursor: pointer;
 }
 
 #menu-list {
@@ -86,6 +100,7 @@ i {
   font-size: 14px;
   background-color: transparent;
   margin-bottom: -6px;
+  cursor: pointer;
 }
 
 .list-button:hover, .list-button:focus {
@@ -93,27 +108,33 @@ i {
   color: #FFFFFF;
 }
 
-h2 {
-
-}
-
 .div-content {
-  margin-right: 68px;
+  margin-right: 10px;
+  width: 194px;
+  background-color: #F5F5F5;
+  height: 190px;
+  align-content: center;
+  align-self: center;
+  text-align: center;
+  margin-left: 12px;
+  margin-top: 30px;
 }
 
 .pink {
   color: #FF009E;
   font-size: 30px;
+  margin: 0;
 }
 
 .green {
   color: #56F89A;
   font-size: 34px;
+  margin: 0;
 }
-
+/*
 #detractors-graph-container {
   min-width: 310px; 
   height: 400px; 
   max-width: 600px; 
   margin: 0 auto;
-}
+}*/

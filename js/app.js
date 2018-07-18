@@ -47,6 +47,7 @@ function showOffice(evt) {
       var officeStudents = data[office][series]['students'].length;
       studentsTotalContainer.classList = 'div-content';
       studentsTotalContainer.innerHTML = '<h2>' + series + '</h2>';
+      studentsTotalContainer.innerHTML += '<i class="icon-user"></i>';
       studentsTotalContainer.innerHTML += '<p class="pink">'+ officeStudents +'</p><p>Alunas</p>';
       mainContent.appendChild(studentsTotalContainer);
   }
@@ -56,8 +57,8 @@ function showOffice(evt) {
   teacherAverage();
   jediAverage();
   studentsExpectations();
-  studentProfile();
-  studentPhoto();
+  // studentProfile();
+  // studentPhoto();
 }
 
 function detractors() {
@@ -83,6 +84,7 @@ function detractors() {
   totalContainer.classList = 'div-content';
   totalContainer.innerHTML = '<h2 class="green">' + totalInactive + '</h2>';
   totalContainer.innerHTML += '<p>Desistiram</p>';
+  totalContainer.innerHTML += '<i class="icon-frown-o"></i>';
   mainContent.appendChild(totalContainer);
 }
 
@@ -124,12 +126,14 @@ function aboveAverage() {
   percentContainer.classList = 'div-content';
   percentContainer.innerHTML = '<h2 class="green">' + studentPercent + '</h2>';
   percentContainer.innerHTML += '<p>De alunas acima da média</p>';
+  percentContainer.innerHTML += '<i class="icon-line-chart"></i>';
   mainContent.appendChild(percentContainer);
 
   var quantityContainer = document.createElement('div');
   quantityContainer.classList = 'div-content';
   quantityContainer.innerHTML = '<h2 class="pink">' + totalAboveAverage + '</h2>';
   quantityContainer.innerHTML += '<p>Alunas acima da média</p>';
+  quantityContainer.innerHTML += '<i class="icon-chart-bar"></i>';
   mainContent.appendChild(quantityContainer);
 }
 
@@ -150,6 +154,7 @@ function netPromoterScores() {
   npsContainer.classList = 'div-content';
   npsContainer.innerHTML = '<h2 class="green">' + npsTotal + '</h2>';
   npsContainer.innerHTML += '<p>NPS</p>';
+  npsContainer.innerHTML += '<i class="icon-pencil-square-o"></i>';
   mainContent.appendChild(npsContainer);
 }
 
@@ -171,6 +176,7 @@ function teacherAverage(){
   teacherPointsContainer.classList = 'div-content';
   teacherPointsContainer.innerHTML = '<h2 class="pink">' + mediaTeacherPoints + '</p>';
   teacherPointsContainer.innerHTML += '<p>Média de Teacher Points</p>';
+  teacherPointsContainer.innerHTML += '<i class="icon-coffee"></i>';
   mainContent.appendChild(teacherPointsContainer);
 }
 
@@ -190,6 +196,7 @@ function jediAverage(){
    jediPointsContainer.classList = 'div-content';
    jediPointsContainer.innerHTML = '<h2 class="pink">' + mediaJediPoints + '</p>';
    jediPointsContainer.innerHTML += '<p>Média de Jedi Points</p>';
+   jediPointsContainer.innerHTML += '<i class="icon-rocket"></i>';
    mainContent.appendChild(jediPointsContainer);
 }
 
@@ -213,32 +220,30 @@ function studentsExpectations(){
     studentsExpectationContainer.classList = 'div-content';
     studentsExpectationContainer.innerHTML = '<h2 class="green">' + meetsAndExceedsExpectation + '</h2>';
     studentsExpectationContainer.innerHTML += '<p>De satisfeitas ou surpresas com a Laboratoria!</p>';
+    studentsExpectationContainer.innerHTML += '<i class="icon-smile-o"></i>';
     mainContent.appendChild(studentsExpectationContainer);
 }
 
-function studentPhoto() {
+// function studentPhoto() {
+//   for (var series in data[office]) {
+//     for (var student in data[office][series]['students']) {
+//       var img = document.createElement('img');
+//       img.src = data[office][series]['students'][student]['photo'];
+//       img.style = "weight: 100px; height: 100px;";
+//       mainContent.appendChild(img);
+//     }
+//   }
+// }
 
-  for (var series in data[office]) {
-    for (var student in data[office][series]['students']) {
-      var img = document.createElement('img');
-      img.src = data[office][series]['students'][student]['photo'];
-      mainContent.appendChild(img);
-    }
-  }
-}
-
-function studentProfile(){
-  var studentProfile = {};
-
-    for (var series in data[office]){
-      for (var student in data[office][series]['students']){
-        studentProfile ['name'] = data[office][series]['students'][student]['name'];
-        studentProfile ['active'] = data[office][series]['students'][student]['active'];
-      }
-    }
-
-console.log(studentProfile);
-}
-
-// Puedes hacer uso de la base de datos a través de la variable `data`
-console.log(data);
+// function studentProfile(){
+//   var studentProfileArray = [];
+//   var studentProfile = {};
+//     for (var series in data[office]){
+//       for (var student in data[office][series]['students']){
+//         studentProfile['name'] = data[office][series]['students'][student]['name'];
+//         studentProfile['active'] = data[office][series]['students'][student]['active'];
+//         studentProfileArray.push(studentProfile);
+//     }
+//   }
+//     console.log(studentProfileArray);
+// }
