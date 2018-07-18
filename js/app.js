@@ -71,12 +71,12 @@ function showOffice(evt) {
   // // if (office = 'AQP') {
   // //   officeName.textContent = 'AREQUIPA';
   // //   mainContent.appendChild(officeName);
-  // // } 
+  // // }
 
   // // if (officeName = 'CDMX') {
   // //   officeName.textContent = 'CIDADE DO MÉXICO';
   // //   mainContent.appendChild(officeName);
-  // // } 
+  // // }
 
   // // if (officeName = 'LIM') {
   // //   officeName.textContent = 'LIMA';
@@ -93,6 +93,7 @@ function showOffice(evt) {
   jediAverage();
   studentsExpectations();
   studentProfile();
+  studentPhoto();
 }
 
 function detractors() {
@@ -156,22 +157,6 @@ function aboveAverage() {
   mainContent.appendChild(quantityContainer);
 
 }
-
-// function techOnly() {
-//   debugger
-//   const TECHMAX = 1800;
-//   const HSEMAX = 1200;
-//   var tech = [];
-
-//   for (var series in data[office]) {
-//     for (var student in data[office][series]['students']) {
-//       for (var i in data[office][series]['students'][student]['sprints']) {
-//         tech.push(data[office][series]['students'][student]['sprints'][i]['score']['tech']);
-//       }
-//     }
-//   }
-//   console.log(tech);
-// }
 
 function netPromoterScores() {
   var promoters = 0;
@@ -246,8 +231,7 @@ function studentsExpectations(){
     mainContent.appendChild(studentsExpectationContainer);
 }
 
-function studentProfile() {
-  var profileStudents = 0;
+function studentPhoto() {
 
   for (var series in data[office]) {
     for (var student in data[office][series]['students']) {
@@ -256,6 +240,19 @@ function studentProfile() {
       mainContent.appendChild(img);
     }
   }
+}
+
+function studentProfile(){
+  var studentProfile = {};
+
+    for (var series in data[office]){
+      for (var student in data[office][series]['students']){
+        studentProfile ['name'] = data[office][series]['students'][student]['name'];
+        studentProfile ['active'] = data[office][series]['students'][student]['active'];
+      }
+    }
+
+console.log(studentProfile);
 }
 
 // Puedes hacer uso de la base de datos a través de la variable `data`
